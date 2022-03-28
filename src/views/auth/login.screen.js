@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { useRecoilState } from 'recoil'
+import * as RNLocalize from "react-native-localize";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { POST } from '../../config'
 import { lang, alertWarning, alertError, loadingStore } from '../../store'
@@ -18,6 +20,19 @@ const LoginScreen = ({ navigation }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    useEffect(() => {
+        const langs = async () => {
+            const getLanguage = await RNLocalize.getLocales()
+            const checkLang   = getLanguage[0].languageCode === "id" ? "id" : "en"
+            await AsyncStorage.setItem('language', checkLang)
+            
+            const lang = await AsyncStorage.getItem('language')
+            setLang(lang)
+        }
+
+        langs()
+    }, [])
+
     const submitLogin = async () => {
         
         setLoading(true)
@@ -30,10 +45,14 @@ const LoginScreen = ({ navigation }) => {
                 })
 
                 if(login.data.statusCode !== 400) {
-
+                    await AsyncStorage.setItem('token_key', login.data.data.token)
+                    setLoading(false)
+                    navigation.navigate("HomeRoutes")
+                    setUsername("")
+                    setPassword("")
                 } else {
                     setLoading(false)
-                    setError(login.data.message+ " ,username must email, and password min length is 8.")    
+                    setError(login.data.message+" ,"+Languages[languange].username_must_email_and_password_min_length_is_8)    
                 }
             } catch (error) {
                 setLoading(false)
@@ -42,7 +61,7 @@ const LoginScreen = ({ navigation }) => {
 
         } else {
             setLoading(false)
-            setWarning("Please fill username and password.")
+            setWarning(Languages[languange].Please_fill_all_required_field)
         }
     }
 

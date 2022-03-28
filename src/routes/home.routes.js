@@ -11,7 +11,9 @@ const HomeRoutes = () => {
         <Tab.Navigator>
             <Tab.Screen name="HomeScreen" component={HomeScreen} />
             <Tab.Screen name="EmployeScreen" component={EmployeScreen} />
+            <Tab.Screen name="TransactionScreen" component={StoreScreen} />
             <Tab.Screen name="StoreScreen" component={StoreScreen} />
+            <Tab.Screen name="SettingsScreen" component={StoreScreen} />
         </Tab.Navigator>
     )
 }

@@ -14,7 +14,11 @@ export const Languages = {
         "Forgot_password" : "Forgot password",
         "About_developer" : "About developer",
         "Click_here" : "Click here",
-        "Send_verification" : "Send verification"
+        "Send_verification" : "Send verification",
+        "username_must_email_and_password_min_length_is_8" : "username must email, and password min length is 8.",
+        "Please_fill_all_required_field" : "Please fill all required field.",
+        "Success_register_user" : "Success register user.",
+        "Email_sended" : "Email success sended."
     },
     id : {
         "Sign_In" : "Masuk",
@@ -31,6 +35,10 @@ export const Languages = {
         "Forgot_password" : "Lupa kata sandi",
         "About_developer" : "Tentang pengembang",
         "Click_here" : "Klik disini",
-        "Send_verification" : "Kirim verifikasi"
+        "Send_verification" : "Kirim verifikasi",
+        "username_must_email_and_password_min_length_is_8" : "nama penguna harus email, dan panjang minimal kata sandi adalah 8.",
+        "Please_fill_all_required_field" : "Silakan isi semua bidang yang wajib diisi.",
+        "Success_register_user" : "Registrasi penguna sukses.",
+        "Email_sended" : "Email berhasil dikirim."
     }
 }
