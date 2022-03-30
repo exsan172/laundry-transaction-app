@@ -14,7 +14,7 @@ const AlertError = (props) => {
                     <Image source={require("../assets/icons/error_icon.png")} style={{ width:50, height:50 }}/>
                 </View>
                 <View style={{ padding:10, justifyContent:'center', alignItems:'center' }}>
-                    <Text>{message}</Text>
+                    <Text style={{color:"#8E8E8E"}}>{message}</Text>
                 </View>
                 <View style={{padding:10}}>
                     <TouchableOpacity onPress={() => setMessage(false)} style={{backgroundColor:'#54AEEA', padding:10, borderRadius:5, justifyContent:'center', alignItems:'center'}}>

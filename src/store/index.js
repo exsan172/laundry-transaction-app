@@ -24,3 +24,18 @@ export const loadingStore = atom({
     key: "load",
     default : false
 })
+
+export const income = atom({
+    key: "income",
+    default : 0
+})
+
+export const totalTransaction = atom({
+    key: "totTrans",
+    default : 0
+})
+
+export const selectDate = atom({
+    key: "selectDate",
+    default : false
+})

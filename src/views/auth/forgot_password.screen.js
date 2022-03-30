@@ -49,7 +49,7 @@ const ForgotPassScreen = ({ navigation }) => {
                     setUsername("")
                 } else {
                     setLoading(false)
-                    setError(forgotPass.data.message)
+                    setError(forgotPass.data.message+" ,"+Languages[languange].username_must_email)
                 }
             } catch (error) {
                 setLoading(false)
@@ -82,7 +82,7 @@ const ForgotPassScreen = ({ navigation }) => {
                             <TextInput 
                                 placeholder={Languages[languange].Enter_email_your_account} 
                                 placeholderTextColor="#9D9D9D"
-                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12 }}
+                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12, color:"#9D9D9D" }}
                                 onChangeText={(e) => setUsername(e)}
                                 value={username}
                             />

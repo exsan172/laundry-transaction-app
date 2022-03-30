@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RecoilRoot } from 'recoil'
+import SplashScreen from  "react-native-splash-screen";
 
 import LoginScreen from '../views/auth/login.screen';
 import RegisterScreen from '../views/auth/register.screen';
@@ -10,6 +11,13 @@ import HomeRoutes from './home.routes';
 
 const Stack = createNativeStackNavigator();
 const AuthRoutes = () => {
+
+    useEffect(() => {
+        setTimeout(() => {
+            SplashScreen.hide()
+        }, 2000)
+    }, [])
+
     return (
         <RecoilRoot>
             <NavigationContainer>

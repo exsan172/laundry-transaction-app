@@ -30,7 +30,15 @@ const LoginScreen = ({ navigation }) => {
             setLang(lang)
         }
 
+        const checkLogin = async () => {
+            const login = await AsyncStorage.getItem('token_key')
+            if(login !== null) {
+                navigation.navigate("HomeRoutes")
+            }
+        }
+
         langs()
+        checkLogin()
     }, [])
 
     const submitLogin = async () => {
@@ -85,7 +93,7 @@ const LoginScreen = ({ navigation }) => {
                             <TextInput 
                                 placeholder={Languages[languange].Enter_email_your_account} 
                                 placeholderTextColor="#9D9D9D" 
-                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12 }}
+                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12, color:"#9D9D9D" }}
                                 value={username}
                                 onChangeText={(e) => setUsername(e)}
                             />
@@ -99,7 +107,7 @@ const LoginScreen = ({ navigation }) => {
                             <TextInput 
                                 placeholder={Languages[languange].Enter_password_length_is_8_character} 
                                 placeholderTextColor="#9D9D9D" 
-                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12 }}
+                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12, color:"#9D9D9D" }}
                                 value={password}
                                 onChangeText={(e) => setPassword(e)}
                                 secureTextEntry

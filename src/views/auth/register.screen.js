@@ -89,7 +89,7 @@ const RegisterScreen = ({ navigation }) => {
                             <TextInput 
                                 placeholder={Languages[languange].Enter_your_full_name} 
                                 placeholderTextColor="#9D9D9D" 
-                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12 }}
+                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12, color:"#9D9D9D" }}
                                 onChangeText={(e) => setName(e)}
                                 value={name}
                             />
@@ -103,7 +103,7 @@ const RegisterScreen = ({ navigation }) => {
                             <TextInput 
                                 placeholder={Languages[languange].Enter_email_your_account} 
                                 placeholderTextColor="#9D9D9D" 
-                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12 }}
+                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12, color:"#9D9D9D" }}
                                 onChangeText={(e) => setUsername(e)}
                                 value={username}
                             />
@@ -117,7 +117,7 @@ const RegisterScreen = ({ navigation }) => {
                             <TextInput 
                                 placeholder={Languages[languange].Enter_password_length_is_8_character} 
                                 placeholderTextColor="#9D9D9D" 
-                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12 }} 
+                                style={{ backgroundColor: '#F8F8F8', paddingHorizontal:15, paddingVertical:8, borderRadius:10, fontSize:12, color:"#9D9D9D" }} 
                                 secureTextEntry
                                 onChangeText={(e) => setPassword(e)}
                                 value={password}

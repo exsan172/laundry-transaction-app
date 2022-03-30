@@ -18,7 +18,9 @@ export const Languages = {
         "username_must_email_and_password_min_length_is_8" : "username must email, and password min length is 8.",
         "Please_fill_all_required_field" : "Please fill all required field.",
         "Success_register_user" : "Success register user.",
-        "Email_sended" : "Email success sended."
+        "Email_sended" : "Email success sended.",
+        "username_must_email" : "username must email.",
+        "Transaction_report" : "Transaction report"
     },
     id : {
         "Sign_In" : "Masuk",
@@ -39,6 +41,8 @@ export const Languages = {
         "username_must_email_and_password_min_length_is_8" : "nama penguna harus email, dan panjang minimal kata sandi adalah 8.",
         "Please_fill_all_required_field" : "Silakan isi semua bidang yang wajib diisi.",
         "Success_register_user" : "Registrasi penguna sukses.",
-        "Email_sended" : "Email berhasil dikirim."
+        "Email_sended" : "Email berhasil dikirim.",
+        "username_must_email" : "nama penguna harus email.",
+        "Transaction_report" : "Laporan transaksi"
     }
 }
