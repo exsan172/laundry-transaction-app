@@ -8,7 +8,7 @@ const AlertError = (props) => {
     const [message, setMessage] = useRecoilState(alertError)
 
     return (
-        <Modal isVisible={message !== false ? true : false} animationInTiming={500} animationOutTiming={600}>
+        <Modal isVisible={message !== false ? true : false} animationInTiming={500} animationOutTiming={600} backdropOpacity={0.4}>
             <View style={{ backgroundColor:'#ffffff', marginHorizontal:15, borderRadius:5, padding:5 }}>
                 <View style={{ justifyContent:'center', alignItems:'center', marginVertical:10 }}>
                     <Image source={require("../assets/icons/error_icon.png")} style={{ width:50, height:50 }}/>

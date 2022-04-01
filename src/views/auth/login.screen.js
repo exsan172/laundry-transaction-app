@@ -129,7 +129,7 @@ const LoginScreen = ({ navigation }) => {
                                 {
                                     loading === true &&
                                     <View style={{marginHorizontal:10}}>
-                                        <ActivityIndicator size="small" color="#ffffff"/>
+                                        <ActivityIndicator size={15} color="#ffffff"/>
                                     </View>
                                 }
                                 <View>

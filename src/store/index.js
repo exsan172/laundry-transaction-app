@@ -39,3 +39,33 @@ export const selectDate = atom({
     key: "selectDate",
     default : false
 })
+
+export const modalCreateTransaction = atom({
+    key: "createTransaction",
+    default : false
+})
+
+export const modalSettings = atom({
+    key: "settings",
+    default : false
+})
+
+export const listStoreHome = atom({
+    key: "listStore",
+    default : []
+})
+
+export const storeInputModalsTransaction = atom({
+    key: "storeTransaction",
+    default : ""
+})
+
+export const customerInputModalsTransaction = atom({
+    key: "customerTransaction",
+    default : ""
+})
+
+export const weightInputModalsTransaction = atom({
+    key: "weightTransaction",
+    default : ""
+})
