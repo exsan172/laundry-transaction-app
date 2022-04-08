@@ -69,3 +69,23 @@ export const weightInputModalsTransaction = atom({
     key: "weightTransaction",
     default : ""
 })
+
+export const idEditTransaction = atom({
+    key: "idEdit",
+    default : ""
+})
+
+export const idDeleteTransaction = atom({
+    key: "idDelete",
+    default : ""
+})
+
+export const showDeleteConfirmHome = atom({
+    key: "showDeleteHome",
+    default : false
+})
+
+export const showChangePassword = atom({
+    key: "changePass",
+    default : false
+})

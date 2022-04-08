@@ -11,34 +11,38 @@ import NetInfo from '@react-native-community/netinfo'
 import BubleComponents from "../../components/buble.components";
 import { GET } from '../../config'
 import { Languages } from '../../laguage'
-import { totalTransaction, income, selectDate, lang, alertWarning, alertError, alertSuccess, listStoreHome, storeInputModalsTransaction, weightInputModalsTransaction, customerInputModalsTransaction, modalCreateTransaction } from '../../store'
+import { totalTransaction, income, selectDate, lang, alertWarning, alertError, alertSuccess, listStoreHome, storeInputModalsTransaction, weightInputModalsTransaction, customerInputModalsTransaction, modalCreateTransaction, idEditTransaction, idDeleteTransaction, showDeleteConfirmHome } from '../../store'
 import SelectDate from "../../components/alert_select_date.components";
 import AlertWarning from "../../components/alert_warning.componennts";
 import AlertError from "../../components/alert_error.components";
 import AlertSuccess from "../../components/alert_success.components";
+import ConfirmDeleteHome from "../../components/alert_confirm_delete_home.components";
 
 const HomeScreen = () => {
-    const [totalIncome, setIncome]      = useRecoilState(income)
-    const [totalTrans, setTotalTrans]   = useRecoilState(totalTransaction)
-    const [date, setDate]               = useRecoilState(selectDate)
-    const [warning, setWarning]         = useRecoilState(alertWarning)
-    const [error, setError]             = useRecoilState(alertError)
-    const [success, setSuccess]         = useRecoilState(alertSuccess)
-    const [listStore, setListStore]     = useRecoilState(listStoreHome)
-    const [refresh, setRefresh]         = useState(false)
-    const [transaction, setTransaction] = useState([])
-    const [loading, setLoading]         = useState(false)
-    const [languange, setLang]          = useRecoilState(lang)
-    const [activeFilter, setActiveFilter]= useState("today")
-    const [store, setStore]             = useRecoilState(storeInputModalsTransaction)
-    const [weight, setWeight]           = useRecoilState(weightInputModalsTransaction)
-    const [customer, setCustomer]       = useRecoilState(customerInputModalsTransaction)
+    const [totalIncome, setIncome]          = useRecoilState(income)
+    const [totalTrans, setTotalTrans]       = useRecoilState(totalTransaction)
+    const [date, setDate]                   = useRecoilState(selectDate)
+    const [warning, setWarning]             = useRecoilState(alertWarning)
+    const [error, setError]                 = useRecoilState(alertError)
+    const [success, setSuccess]             = useRecoilState(alertSuccess)
+    const [listStore, setListStore]         = useRecoilState(listStoreHome)
+    const [store, setStore]                 = useRecoilState(storeInputModalsTransaction)
+    const [weight, setWeight]               = useRecoilState(weightInputModalsTransaction)
+    const [customer, setCustomer]           = useRecoilState(customerInputModalsTransaction)
     const [modalTrans, setModasTransaction] = useRecoilState(modalCreateTransaction)
+    const [idEdit, setIdEdit]               = useRecoilState(idEditTransaction)
+    const [idDelete, setIdDelete]           = useRecoilState(idDeleteTransaction)
+    const [deleteModals, setDeleteModals]   = useRecoilState(showDeleteConfirmHome)
+    const [refresh, setRefresh]             = useState(false)
+    const [transaction, setTransaction]     = useState([])
+    const [loading, setLoading]             = useState(false)
+    const [languange, setLang]              = useRecoilState(lang)
+    const [activeFilter, setActiveFilter]   = useState("today")
 
     useEffect(() => {
-        getDataToday()
+        refreshData()
         getStore()
-    }, [])
+    }, [modalTrans, deleteModals])
 
     const getStore = async () => {
         const token = await AsyncStorage.getItem('token_key')
@@ -63,13 +67,15 @@ const HomeScreen = () => {
     const getDataToday = () => {
         const today   = moment().tz("Asia/Jakarta").format("YYYY-MM-D")
         const nextDay = moment().tz("Asia/Jakarta").add(1, "days").format("YYYY-MM-D")
+
         getTransaction(today, nextDay, "today")
     }
 
     const getDataYesterday = () => {
-        const today   = moment().tz("Asia/Jakarta").subtract(2, 'days').format("YYYY-MM-D")
+        const today   = moment().tz("Asia/Jakarta").format("YYYY-MM-D")
         const prevDay  = moment().tz("Asia/Jakarta").subtract(1, 'days').format("YYYY-MM-D")
-        getTransaction(today, prevDay, "yesterday")
+
+        getTransaction(prevDay, today, "yesterday")
     }
 
     const getTransaction = async (today, nextDay, active) => {
@@ -129,9 +135,15 @@ const HomeScreen = () => {
 
     const setModalEditData = (data) => {
         setModasTransaction(true)
-        setStore(data.id_cabang)
+        setStore({value : data.id_cabang})
         setWeight(data.total_weight)
         setCustomer(data.name)
+        setIdEdit(data._id)
+    }
+
+    const showModalsDelete = (data) => {
+        setIdDelete(data._id)
+        setDeleteModals(true)
     }
     
     return (
@@ -140,6 +152,7 @@ const HomeScreen = () => {
             <AlertWarning/>
             <AlertError/>
             <AlertSuccess/>
+            <ConfirmDeleteHome/>
             <View>
                 <View style={{ backgroundColor:"#54AEEA", borderBottomRightRadius:20, borderBottomLeftRadius:20, height:210}}>
                     <BubleComponents/>
@@ -222,7 +235,7 @@ const HomeScreen = () => {
                                                     </View>
                                                     <View>
                                                         <Text style={{fontSize:10}}>
-                                                            {moment(data.createdAt).format("MMM D, HH.mm")}
+                                                            {moment(data.createdAt).format("MMM D, HH.mm")} | ID. #{data._id.slice(data._id.length-5, data._id.length )}
                                                         </Text>
                                                     </View>
                                                 </View>
@@ -233,7 +246,7 @@ const HomeScreen = () => {
                                                         </Text>
                                                     </View>
                                                     <View style={{flexDirection:'row', alignItems:'flex-end'}}>
-                                                        <TouchableOpacity style={{marginHorizontal:3, paddingVertical:5, paddingHorizontal:15, backgroundColor:'#54AEEA', borderRadius:5}}>
+                                                        <TouchableOpacity style={{marginHorizontal:3, paddingVertical:5, paddingHorizontal:15, backgroundColor:'#54AEEA', borderRadius:5}} onPress={() => showModalsDelete(data)}>
                                                             <Icon name="trash-can" size={17} color="#ffffff"/>
                                                         </TouchableOpacity>
                                                         <TouchableOpacity style={{marginLeft:3, paddingVertical:5, paddingHorizontal:15, backgroundColor:'#54AEEA', borderRadius:5}} onPress={() => setModalEditData(data)}>

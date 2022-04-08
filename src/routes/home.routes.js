@@ -12,9 +12,10 @@ import EmployeScreen from "../views/apps/employe.screen";
 import StoreScreen from "../views/apps/store.screen"
 import ModalsCreateTransaction from "../components/modals_create_transaction.components";
 import ModalsSettings from "../components/modals_settings.components";
+import ChangePassword from "../components/modals_change_password.components";
 
 const Tab = createBottomTabNavigator();
-const HomeRoutes = () => {
+const HomeRoutes = ({ navigation }) => {
     const [showMenu, setShowMenu]                = useState(false)
     const [showTransaction, setShowTransacation] = useRecoilState(modalCreateTransaction)
     const [showSettings, setShowSettings]        = useRecoilState(modalSettings)
@@ -35,7 +36,8 @@ const HomeRoutes = () => {
     return (
         <>
             <ModalsCreateTransaction/>
-            <ModalsSettings/>
+            <ModalsSettings navigation={navigation}/>
+            <ChangePassword/>
             <Tab.Navigator activeColor="#54AEEA">
                 <Tab.Screen 
                     name="HomeScreen" 
@@ -122,10 +124,14 @@ const HomeRoutes = () => {
                         headerShown:false,
                         tabBarShowLabel: false,
                         tabBarIcon : ({ color }) => (
-                            <TouchableOpacity onPress={() => setShowSettings(true)}>
+                            <TouchableOpacity onPress={() => setShowSettings(true)}  style={{height:65, width:65}}>
                                 <Icon name="cog" size={27} color={color}/>
                             </TouchableOpacity>
                         ),
+                        tabBarIconStyle : {
+                            position:'absolute',
+                            bottom:15
+                        },
                         tabBarStyle: {
                             height:65
                         }

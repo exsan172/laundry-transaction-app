@@ -37,7 +37,22 @@ export const Languages = {
         "save_transaction" : "Save transaction",
         "close" : "Close",
         "offline" : "You are offline now, check your connection.",
-        "saved_data" : "Success, data saved."
+        "saved_data" : "Success, data saved.",
+        "success_deleted" : "Success, deleted transaction",
+        "confirm_delete_trans" : "Are you sure to delete Trasaction ?",
+        "store_report" : "Store report",
+        "total_all_store" : "Total all store",
+        "settings" : "Settings",
+        "logout" : "Logout",
+        "change_password" : "Change password",
+        "new_password" : "New password",
+        "enter_new_password" : "Enter your new password.",
+        "confirm_password" : "Confirm password",
+        "enter_confirm_password" : "Enter again your new password.",
+        "save" : "Save",
+        "change_lang" : "Change language",
+        "not_match_password" : "New password not match.",
+        "success_change_pass" : "Success change password."
     },
     id : {
         "Sign_In" : "Masuk",
@@ -77,6 +92,21 @@ export const Languages = {
         "save_transaction" : "Simpan transaksi",
         "close" : "Tutup",
         "offline" : "Koneksi internet kamu sedang tergangu, cek koneksi kamu.",
-        "saved_data" : "Sukses, data tersimpan."
+        "saved_data" : "Sukses, data tersimpan.",
+        "success_deleted" : "Sukses, transaksi di hapus.",
+        "confirm_delete_trans" : "Apakah yakin ingin menghapus transaksi ?",
+        "store_report" : "Laporan toko",
+        "total_all_store" : "Total semua toko",
+        "settings" : "Pengaturan",
+        "logout" : "Keluar",
+        "change_password" : "Ganti kata sandi",
+        "new_password" : "Kata sandi baru",
+        "enter_new_password" : "Masukan kata sandi barumu.",
+        "confirm_password" : "Konfirmasi katas andi",
+        "enter_confirm_password" : "Masukan lagi kata sandi barumu.",
+        "save" : "Simpan",
+        "change_lang" : "Ganti bahasa",
+        "not_match_password" : "Password tidak sama.",
+        "success_change_pass" : "Sukses password di ganti."
     }
 }

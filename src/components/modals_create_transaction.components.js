@@ -9,7 +9,7 @@ import { Picker } from 'react-native-woodpicker'
 import { POST } from '../config'
 import { modalCreateTransaction } from '../store'
 import { Languages } from '../laguage'
-import { lang, alertWarning, alertError, alertSuccess, listStoreHome, weightInputModalsTransaction, storeInputModalsTransaction, customerInputModalsTransaction } from '../store'
+import { lang, alertWarning, alertError, alertSuccess, listStoreHome, weightInputModalsTransaction, storeInputModalsTransaction, customerInputModalsTransaction, idEditTransaction } from '../store'
 
 const ModalsCreateTransaction = () => {
     const [showTransaction, setShowTransacation] = useRecoilState(modalCreateTransaction)
@@ -18,10 +18,11 @@ const ModalsCreateTransaction = () => {
     const [error, setError]                      = useRecoilState(alertError)
     const [success, setSuccess]                  = useRecoilState(alertSuccess)
     const [listStore, setListStore]              = useRecoilState(listStoreHome)
-    const [loadingTrans, setLoadingTrans]        = useState(false)
     const [store, setStore]                      = useRecoilState(storeInputModalsTransaction)
     const [customer, setCustomer]                = useRecoilState(customerInputModalsTransaction)
     const [weight, setWeight]                    = useRecoilState(weightInputModalsTransaction)
+    const [idEdit, setIdEdit]                    = useRecoilState(idEditTransaction)
+    const [loadingTrans, setLoadingTrans]        = useState(false)
 
     const closeTransacton = () => {
         setShowTransacation(false)
@@ -37,14 +38,16 @@ const ModalsCreateTransaction = () => {
             try {
                 const token = await AsyncStorage.getItem('token_key')
                 const tokenDecode = jwtDecode(token)
+                const url = idEdit !== "" ? "transaction/edit-transaksi" : "transaction/input-transaksi"
                 
-                tokenDecode.role !== "owner" && setStore(tokenDecode.cabang)
-                const newTransaction = await POST(token, "transaction/input-transaksi", {
+                tokenDecode.role !== "owner" && idEdit === "" && setStore({value : tokenDecode.cabang})
+                const newTransaction = await POST(token, url, {
+                    "id_transaksi" : idEdit,
                     "id_cabang" : store.value,
                     "total_weight" : weight,
                     "name" : customer
                 })
-
+                
                 if(newTransaction.data.statusCode === 201) {
                     setSuccess(Languages[languange].saved_data)
                     setShowTransacation(false)
